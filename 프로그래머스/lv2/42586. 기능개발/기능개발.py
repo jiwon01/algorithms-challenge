@@ -1,6 +1,3 @@
-# Stack vs Queue ?
-# What should I use?
-
 def solution(progresses, speeds):
     # 며칠이 걸리는 지에 대한 array(Queue)를 만듦
     how_many_days = []
@@ -18,6 +15,7 @@ def solution(progresses, speeds):
     current_pointer = 0  # answer array의 위치 표시
     current_num = None  # 현재 계산 중인 숫자 정보
     answer = []  # return할 정답 변수
+    
     for i in range(0, len(how_many_days)):
         if current_num == None:  # 처음 돌아가나요
             current_num = how_many_days[i]
@@ -29,6 +27,5 @@ def solution(progresses, speeds):
             current_pointer += 1
             current_num = how_many_days[i]
             answer.append(1)
-    print(answer)
             
     return answer
