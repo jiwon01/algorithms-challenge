@@ -3,9 +3,9 @@ def solution(phone_book):
     #print(phone_book)
     for key, value in enumerate(phone_book):
         if key + 1 == len(phone_book):
-            continue
-        if value == (phone_book[key+1])[:len(value)]:
+            break
+        elif value == (phone_book[key+1])[:len(value)]:
             return False
     return True
 
-# 이 문제는 for문이 두 번 이루어짐. 너무 비효율적임. 
+# 정렬 후 내 뒤에 있는 원소의 앞 글자와 비교. 동일하면 즉시 False return함.
