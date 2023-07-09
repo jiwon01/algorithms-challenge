@@ -10,27 +10,27 @@ from heapq import *
 def solution(jobs):
     answer, progress = 0, 0  # 정답 변수, 현재 어디 ms를 처리 중인가?
     len_ = len(jobs)  # 길이를 저장
-    i = 0
-    heap = []  # 힙
-    jobs.sort(key=lambda x: (x[0], x[1]))  # jobs 리스트 x: x[0] 기준 정렬
+    i = 0  # 현재 처리한 progress(작업)의 개수
+    heap = []  # 프로그램들이 들어갈 힙
+    jobs.sort(key=lambda x: (x[0], x[1]))  # jobs 정렬
     
     while i != len_:
-        while jobs and progress >= jobs[0][0]:
-            poped = jobs.pop(0)
-            heappush(heap, (poped[1], poped[0]))
+        while jobs and progress >= jobs[0][0]:  # 현재 ms보다 작거나 같은 작업
+            poped = jobs.pop(0)  # 뽑
+            heappush(heap, (poped[1], poped[0]))  # jobs[x][y]를 [y][x]로 바꿔 push... ms 단위가 앞으로 와야함. (정렬 이유)
         
-        if jobs and not heap:
-            poped = jobs.pop(0)
-            progress = poped[0]
-            heappush(heap, (poped[1], poped[0]))
+        if jobs and not heap:  # jobs는 있으나 heap엔 없음... (=현재 처리할 작업이 없다.)
+            poped = jobs.pop(0)  # 그냥 첫번째(제일 우선)을 뽑
+            progress = poped[0]  # 현재 ms를 뽑은걸로 맞춤
+            heappush(heap, (poped[1], poped[0]))  # 위와 마찬가지로 반전하여 heap에 push
         
-        running_time, start_time = heappop(heap)
-        progress += running_time
+        running_time, start_time = heappop(heap)  # heappop. 제일 우선된 작업을 pop
+        progress += running_time  # 현재 ms를 running_time을 더한 값으로 저장
         
-        answer += (progress) - start_time
-        i += 1
+        answer += (progress) - start_time  # 현재 ms에 현재 작업을 시작한 타이밍을 빼면 요청부터 종료까지의 시간이 나옴.
+        i += 1  # 작업 +1
             
-    return answer // len_
+    return answer // len_  # 총 개수를 나눠 평균을 구해 리턴
 
 
 
