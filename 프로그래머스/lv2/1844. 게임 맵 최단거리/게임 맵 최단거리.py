@@ -12,8 +12,7 @@ max_y = len(maps)
 from collections import deque
 
 def solution(maps):
-    answer = bfs(maps, 0, 0)
-    return answer
+    return bfs(maps, 0, 0)
 
 def bfs(maps, x, y):
     max_x = len(maps)
