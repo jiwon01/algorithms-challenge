@@ -10,7 +10,6 @@ def solution(bridge_length, weight, truck_weights):  # 다리 트럭수int, 다�
     while trucks or on_bridge:
         answer += 1  # 1초 플러스
         
-        ### 차빼기 부분만 고치면 됨!!! ###
         ### 차빼기 ###
         if on_bridge:  # 다리에 차가 있는가?
             # 다리에 올라간 차들의 남은 길이를 -1 
